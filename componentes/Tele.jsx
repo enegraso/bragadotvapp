@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Button } from 'react-native'
+import { Dimensions, View, StyleSheet, Button } from 'react-native'
 import Constants from 'expo-constants'
 import { Video, ResizeMode } from "expo-av"
 import * as ScreenOrientation from "expo-screen-orientation"
 
-const Tele = ({link, tipo}) => {
+const Tele = ({ link, tipo }) => {
+
+    // dimensiones para ventanita de video, serán var ya que cambian al girar pantalla
+    var dimensions = Dimensions.get('window');
+    var imageHeight = Math.round(dimensions.width * 9 / 16);
+    var imageWidth = dimensions.width * 90 / 100;
+    var imagetop 
+
     const video = React.useRef(null);
     const [status, setStatus] = React.useState({});
     const [orientationIsLandscape, setOrientation] = React.useState(true)
@@ -17,32 +24,34 @@ const Tele = ({link, tipo}) => {
         else if (orientationIsLandscape == false) {
             await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT)
         }
-        console.log(orientationIsLandscape)
     }
 
     const toggleorientation = () => {
         setOrientation(!orientationIsLandscape)
         changeOrientation()
         setPressgirar(true)
+        // intento adaptar el alto y ancho al girar
+        dimensions = Dimensions.get('window');
+        if (dimensions.width > dimensions.height) {
+            imageHeight = Math.round(dimensions.height * 25 / 100);
+            imageWidth = dimensions.width * 90 / 100;
+            imagetop = imageHeight - 40
+        } else {
+            imageHeight = Math.round(dimensions.height * 70 / 100);
+            imageWidth = dimensions.width * 90 / 100;
+            imagetop = imageHeight - 40    
+        }
+        console.log("Ancho: " + dimensions.width + " - Alto: " + dimensions.height)
+        console.log("new ancho: " + imageWidth + " - new alto: "+ imageHeight)
         console.log("boton")
     }
 
-/*     if (orientationIsLandscape && !pressgirar)
-    toggleorientation() */
+    /*     if (orientationIsLandscape && !pressgirar)
+        toggleorientation() */
+
 
     return (
         <View style={styles.container} >
-            <Video
-                ref={video}
-                style={styles.video}
-                source={{
-                    uri: 'https://inliveserver.com:1936/12000/12000/playlist.m3u8',
-                }}
-                useNativeControls
-                resizeMode={ResizeMode.CONTAIN}
-                isLooping
-                onPlaybackStatusUpdate={status => setStatus(() => status)}
-            />
             <View style={styles.button} >
                 <Button
                     title={status.isPlaying ? 'Pause' : 'Play'}
@@ -52,16 +61,28 @@ const Tele = ({link, tipo}) => {
                 />
                 <Button
                     title="Girar"
-                    onPress={() => {toggleorientation()}}
+                    onPress={() => { toggleorientation() }}
                 />
             </View>
+            <Video
+                ref={video}
+                /* style={styles.video} */
+                style={{ height: imageHeight, width: imageWidth, alignSelf: "center", top: imagetop }}
+                source={{
+                    uri: 'https://inliveserver.com:1936/12000/12000/playlist.m3u8',
+                }}
+                useNativeControls
+                resizeMode={ResizeMode.CONTAIN}
+                isLooping
+                onPlaybackStatusUpdate={status => setStatus(() => status)}
+            />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: Constants.statusBarHeight + 10,
+        paddingTop: 5,
     },
     video: {
         alignSelf: 'center',
@@ -72,7 +93,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: 'space-around',
         alignItems: 'center',
-        margin: 10
+        margin: 2
     }
 })
 

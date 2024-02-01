@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "bragadotvapp",
+    "name": "Bragado TV App",
     "slug": "bragadotvapp",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -21,10 +21,19 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.enegraso.bragadotvapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "fb76245d-8f79-449d-a6df-83f39d8b26c0"
+      }
     }
+  },
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-6541245434978705~6536028698"
   }
 }
