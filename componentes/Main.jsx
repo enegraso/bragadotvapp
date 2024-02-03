@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import AppBar from "./AppBar";
 import { Navigate, Route, Routes } from "react-router-native";
 import Info from "./Info";
@@ -12,6 +12,7 @@ const Main = () => {
     return (
         <View>
             <AppBar />
+            <StatusBar />
             <Routes>
                 <Route path="/" element={<Info />} />
                 <Route path="/radio" element={<Radio />} />

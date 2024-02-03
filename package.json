@@ -13,16 +13,18 @@
     "expo": "~50.0.3",
     "expo-av": "^13.10.4",
     "expo-constants": "^15.4.5",
+    "expo-dev-client": "~3.3.7",
     "expo-screen-orientation": "^6.4.1",
     "expo-status-bar": "~1.11.1",
     "expo-web-browser": "^12.8.2",
     "react": "18.2.0",
     "react-native": "0.73.2",
     "react-native-google-mobile-ads": "^12.10.0",
+    "react-native-media-query": "^2.0.1",
     "react-native-rss-parser": "^1.5.1",
     "react-router-native": "^6.21.3",
     "rss-to-json": "^2.1.1",
-    "expo-dev-client": "~3.3.7"
+    "@expo/metro-runtime": "~3.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

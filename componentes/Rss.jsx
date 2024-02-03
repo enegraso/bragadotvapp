@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Dimensions, Button, View, Text, ScrollView, StyleSheet, Image } from 'react-native'
+import { Dimensions, Button, View, Text, ScrollView, StyleSheet, Image, ActivityIndicator } from 'react-native'
 import axios from "axios";
 import * as WebBrowser from 'expo-web-browser';
 
@@ -60,10 +60,10 @@ const Rss = () => {
     firstten = notas.slice(0,14);
 
     return (
-        <View>
+        <View style={styles.containernews}>
             {isloading ?
-                <Text style={styles.loading}>Cargando notas...</Text> :
-                <View style={[styles.areanotas, { height: "86%" }]}>
+                <View style={styles.loading}><ActivityIndicator style={styles.indicador} /></View> :
+                <View style={styles.areanotas}>
                     <Text style={styles.diariotit}>Últimas noticias</Text>
                     <Text style={styles.diariosub}> {items.title} </Text>
                     <View>
@@ -90,6 +90,9 @@ const Rss = () => {
 
 // mi humilde y triste CSS
 const styles = StyleSheet.create({
+    containernews: {
+        height: "89%"
+    },
     areanotas: {
         backgroundColor: "pink"
     },
@@ -99,20 +102,19 @@ const styles = StyleSheet.create({
         backgroundColor: "lightgrey"
     },
     diariotit: {
-        fontSize: 30,
+        fontSize: 22,
         fontWeight: "bold",
-        color: "white",
-
+        color: "black",
     },
     diariosub: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: "bold",
         color: "blue"
     },
     titulo: {
         justifyContent: "space-between",
         alignItems: "stretch",
-        fontSize: 25,
+        fontSize: 20,
         fontWeight: "bold",
         fontFamily: "Roboto"
     },
@@ -127,8 +129,13 @@ const styles = StyleSheet.create({
         borderRadius: 15
     },
     loading: {
-        alignContent: 'center',
+        flexDirection: 'column',
+        alignContent: 'space-between',
         alignItems: 'center',
+        height: '89%'
+    },
+    indicador: {
+        color: 'midnightred'
     },
     boton: {
         alignSelf: "center",
