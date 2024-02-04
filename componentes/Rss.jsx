@@ -60,7 +60,7 @@ const Rss = () => {
 
     if (error) {
         // Muestro si falla la carga
-        return (<View><Text>{error}</Text></View>)
+        return (<View style={styles.containernews}><Text>{error.message}</Text></View>)
     } else {
         // aqui tomo las primeras 15 notas 
         firstten = notas.slice(0, 14);
@@ -77,14 +77,14 @@ const Rss = () => {
                     <View>
                         <ScrollView style={styles.diario}>
                             {firstten.map((item) =>
-                                <View key={item.id}>
+                                <View key={item.id} style={{paddingTop: 3, paddingBottom: 15}}>
                                     <Text style={styles.titulo}> {item.title} </Text>
                                     <View style={styles.contimg}>
                                         <Image style={{ height: imageHeight, width: imageWidth }} resizeMode={"cover"} source={{ uri: !item.media.thumbnail ? obtenImg(item.content) : item.media.thumbnail.url }}></Image>
                                     </View>
                                     <Text > {item.description}</Text>
                                     <View style={styles.boton}>
-                                        <Button title="Abrir en navegador" onPress={() => { _handlePressButtonAsync(item.link) }} />
+                                        <Button title="Leer más..." onPress={() => { _handlePressButtonAsync(item.link) }} />
                                     </View>
                                 </View>
                             )}
@@ -99,7 +99,7 @@ const Rss = () => {
 // mi humilde y triste CSS
 const styles = StyleSheet.create({
     containernews: {
-        height: "89%"
+        height: "80%"
     },
     areanotas: {
         backgroundColor: "pink"
