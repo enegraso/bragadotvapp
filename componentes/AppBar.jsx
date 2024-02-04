@@ -1,6 +1,5 @@
 import react from "react";
 import { View, Text, ScrollView, StyleSheet } from 'react-native'
-import Constants from 'expo-constants'
 import { Link } from "react-router-native";
 
 const AppBarTab = ({ active, children, to }) => {

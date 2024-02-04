@@ -6,11 +6,11 @@ import Info from "./Info";
 import Radio from "./Radio";
 import Tele from "./Tele";
 import Rss from './Rss';
-
+import Constants from 'expo-constants'
 
 const Main = () => {
     return (
-        <View>
+        <View style={styles.appbar}>
             <AppBar />
             <Routes>
                 <Route path="/" element={<Info />} />
@@ -24,9 +24,8 @@ const Main = () => {
 }
 
 const styles = StyleSheet.create({
-    barra: {
-        backgroundColor: 'red',
-        color: 'white'
+    appbar: {
+        marginTop: Constants.statusBarHeight,
     }
 
 })

@@ -75,7 +75,7 @@ const Rss = () => {
                     <Text style={styles.diariotit}>Últimas noticias</Text>
                     <Text style={styles.diariosub}> {items.title} </Text>
                     <View>
-                        <ScrollView style={styles.diario}>
+                        <ScrollView style={[styles.diario]}>
                             {firstten.map((item) =>
                                 <View key={item.id} style={{paddingTop: 3, paddingBottom: 15}}>
                                     <Text style={styles.titulo}> {item.title} </Text>
@@ -99,14 +99,14 @@ const Rss = () => {
 // mi humilde y triste CSS
 const styles = StyleSheet.create({
     containernews: {
-        height: "80%"
+        height: "90%"
     },
     areanotas: {
         backgroundColor: "pink"
     },
     diario: {
         alignSelf: "center",
-        height: "100%",
+        height: "89%",
         backgroundColor: "lightgrey"
     },
     diariotit: {
