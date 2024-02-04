@@ -12,6 +12,7 @@ const Rss = () => {
     const [items, setItems] = useState([])
     const [notas, setNotas] = useState([])
     const [isloading, setIsloading] = useState(false)
+    const [error, setError] = useState(null)
     // array de las primeras 10 notas obtenidas
     var firstten = []
 
@@ -26,6 +27,7 @@ const Rss = () => {
             setNotas(recipeData.data.items)
             setIsloading(false);
         } catch (err) {
+            setError(err)
             console.log(`Error al obtener la url ${err}`)
         }
     }
@@ -56,13 +58,19 @@ const Rss = () => {
         return foto
     }
 
-    // aqui tomo las primeras 15 notas 
-    firstten = notas.slice(0,14);
+    if (error) {
+        // Muestro si falla la carga
+        return (<View><Text>{error}</Text></View>)
+    } else {
+        // aqui tomo las primeras 15 notas 
+        firstten = notas.slice(0, 14);
+
+    }
 
     return (
         <View style={styles.containernews}>
             {isloading ?
-                <View style={styles.loading}><ActivityIndicator style={styles.indicador} /></View> :
+                <View style={styles.loading}><ActivityIndicator size="large" color='midnightred' /></View> :
                 <View style={styles.areanotas}>
                     <Text style={styles.diariotit}>Últimas noticias</Text>
                     <Text style={styles.diariosub}> {items.title} </Text>
@@ -133,9 +141,6 @@ const styles = StyleSheet.create({
         alignContent: 'space-between',
         alignItems: 'center',
         height: '89%'
-    },
-    indicador: {
-        color: 'midnightred'
     },
     boton: {
         alignSelf: "center",

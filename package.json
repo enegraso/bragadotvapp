@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/metro-runtime": "~3.1.1",
     "axios": "^1.6.7",
     "expo": "~50.0.3",
     "expo-av": "^13.10.4",
@@ -23,8 +24,7 @@
     "react-native-media-query": "^2.0.1",
     "react-native-rss-parser": "^1.5.1",
     "react-router-native": "^6.21.3",
-    "rss-to-json": "^2.1.1",
-    "@expo/metro-runtime": "~3.1.1"
+    "rss-to-json": "^2.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
