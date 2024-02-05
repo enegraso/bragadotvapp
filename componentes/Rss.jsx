@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Dimensions, Button, View, Text, ScrollView, StyleSheet, Image, ActivityIndicator } from 'react-native'
 import axios from "axios";
 import * as WebBrowser from 'expo-web-browser';
+import * as ScreenOrientation from "expo-screen-orientation"
 
 const Rss = () => {
     // Dimensiones para imagenes
@@ -15,7 +16,14 @@ const Rss = () => {
     const [error, setError] = useState(null)
     // array de las primeras 10 notas obtenidas
     var firstten = []
+    // setear orientacion de pantalla para elegir estilos lo mejor posible
+    const [orient, setOrient] = useState(null);
 
+    // usar funcion para ver si es porttrait
+    const isPortrait = () => {
+        const dim = Dimensions.get('screen');
+        return dim.height >= dim.width;
+    };
 
     // función para obtener notas
     const getNotas = async () => {
@@ -33,11 +41,32 @@ const Rss = () => {
     }
 
     useEffect(() => {
+        // Conseguir las notas
         // console.log("Nota seleccionada", id);
         setIsloading(true);
         // setLoadingimg(true);
         getNotas();
+        //Pantalla
+        checkOrient();
+        const subscription = ScreenOrientation.addOrientationChangeListener(
+            handleOrientationChange
+        );
+        return () => {
+            ScreenOrientation.removeOrientationChangeListeners(subscription);
+        };
     }, []);
+
+    // chequeo la orientation
+    const checkOrient = async () => {
+        const orient = await ScreenOrientation.getOrientationAsync();
+        setOrient(orient);
+    };
+
+    // atento a cualquier giro de pantalla
+    const handleOrientationChange = (o) => {
+        setOrient(isPortrait());
+    };
+
 
     // funcion para ver nota completa en el navegador
     const _handlePressButtonAsync = async (web) => {
@@ -68,7 +97,7 @@ const Rss = () => {
     }
 
     return (
-        <View style={styles.containernews}>
+        <View>
             {isloading ?
                 <View style={styles.loading}><ActivityIndicator size="large" color='midnightred' /></View> :
                 <View style={styles.areanotas}>
@@ -77,7 +106,7 @@ const Rss = () => {
                     <View>
                         <ScrollView style={[styles.diario]}>
                             {firstten.map((item) =>
-                                <View key={item.id} style={{paddingTop: 3, paddingBottom: 15}}>
+                                <View key={item.id} style={{ paddingTop: 3, paddingBottom: 15 }}>
                                     <Text style={styles.titulo}> {item.title} </Text>
                                     <View style={styles.contimg}>
                                         <Image style={{ height: imageHeight, width: imageWidth }} resizeMode={"cover"} source={{ uri: !item.media.thumbnail ? obtenImg(item.content) : item.media.thumbnail.url }}></Image>
@@ -99,6 +128,9 @@ const Rss = () => {
 // mi humilde y triste CSS
 const styles = StyleSheet.create({
     containernews: {
+        height: "90%"
+    },
+    landcontainernews: {
         height: "90%"
     },
     areanotas: {

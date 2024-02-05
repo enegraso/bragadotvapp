@@ -8,17 +8,17 @@ const Tele = ({ link, tipo }) => {
 
     // dimensiones para ventanita de video, serán var ya que cambian al girar pantalla
     var dimensions = Dimensions.get('window');
-    var imageHeight = Math.round(dimensions.width * 9 / 16);
-    var imageWidth = dimensions.width * 90 / 100;
-    var imagetop
-
-    //obtener rotacion de pantalla
-    const [orient, setOrient] = useState(null);
 
     const video = React.useRef(null);
     const [status, setStatus] = React.useState({});
-    const [orientationIsLandscape, setOrientation] = React.useState(true)
-    const [pressgirar, setPressgirar] = useState(false)
+    
+    //obtener rotacion de pantalla
+    const [orient, setOrient] = useState(null);
+
+    const isPortrait = () => {
+        const dim = Dimensions.get('screen');
+        return dim.height >= dim.width;
+      };
 
     useEffect(() => {
         checkOrient();
@@ -38,12 +38,12 @@ const Tele = ({ link, tipo }) => {
 
     const handleOrientationChange = (o) => {
         setOrient(o.orientationInfo.orientation);
-    }; 
+    };
 
     return (
-        <View style={styles.container} >
+        <View style={ isPortrait() ? styles.container : styles.landcontainer } >
             <View style={styles.button} >
-                {dimensions.width < dimensions.height ?
+                {isPortrait() ?
                     <Button
                         title={status.isPlaying ? 'Pause' : 'Play'}
                         onPress={() =>
@@ -55,7 +55,7 @@ const Tele = ({ link, tipo }) => {
             <ScrollView>
                 <Video
                     ref={video}
-                    style={{ height: 200, width: 300, alignSelf: "center"}}
+                    style={{ height: 200, width: 300, alignSelf: "center" }}
                     source={{
                         uri: 'https://inliveserver.com:1936/12000/12000/playlist.m3u8',
                     }}
@@ -76,7 +76,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#6804CD',
         width: '100%',
-        height: '89%', 
+        height: '89%',
+    },
+    landcontainer: {
+        top: '10%',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        backgroundColor: '#6804CD',
+        width: '100%',
+        height: '70%',
     },
     button: {
         flexDirection: "row",
