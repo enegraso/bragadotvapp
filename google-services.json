@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "932580555577",
+    "project_id": "bragado-tv-app",
+    "storage_bucket": "bragado-tv-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932580555577:android:4565cd7c381559249706e8",
+        "android_client_info": {
+          "package_name": "com.enegraso.bragadotvapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALrMvS1zR3nzobexLJBq3qBN3zaR0WmJg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

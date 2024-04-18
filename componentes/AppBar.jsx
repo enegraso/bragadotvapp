@@ -49,13 +49,14 @@ const AppBar = () => {
         // Elijo estilo segun ancho de pantalla
         <View style={isPortrait() ? styles.contenedor : styles.conteland}>
             <View style={styles.tituloapp}>
-                <Text style={styles.textotit}>Bragado TV</Text>
+                <Text style={styles.textotit}>Bragado TV App</Text>
             </View>
             <View style={styles.vistascr}>
                 <ScrollView horizontal>
                     <AppBarTab active to='/'> Home </AppBarTab>
                     <AppBarTab to='/tele'> TV en VIVO </AppBarTab>
                     <AppBarTab to='/news'> Noticias </AppBarTab>
+                    {/* <AppBarTab to='/ads'> Banner </AppBarTab> */}
                 </ScrollView>
             </View>
         </View>
@@ -64,17 +65,17 @@ const AppBar = () => {
 
 const styles = StyleSheet.create({
     contenedor: {
-        backgroundColor: "'#16D5EF'",
+        backgroundColor: "blue",
         height: '12%',
     },
     conteland: {
-        backgroundColor: "'#16D5EF'",
+        backgroundColor: "blue",
         height: '22%',
     },
     tituloapp: {
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: '#16D5EF',
+        // backgroundColor: '#16D5EF',
         height: '55%'
     },
     vistascr: {

@@ -93,16 +93,15 @@ const Rss = () => {
     } else {
         // aqui tomo las primeras 15 notas 
         firstten = notas.slice(0, 14);
-
     }
 
     return (
-        <View>
+        <View style={isPortrait() ? styles.containernews : styles.landcontainernews}>
             {isloading ?
                 <View style={styles.loading}><ActivityIndicator size="large" color='midnightred' /></View> :
                 <View style={styles.areanotas}>
-                    <Text style={styles.diariotit}>Últimas noticias</Text>
-                    <Text style={styles.diariosub}> {items.title} </Text>
+                    {/* <Text style={styles.diariotit}>Últimas noticias</Text>
+                    <Text style={styles.diariosub}> {items.title} </Text> */}
                     <View>
                         <ScrollView style={[styles.diario]}>
                             {firstten.map((item) =>
@@ -128,17 +127,23 @@ const Rss = () => {
 // mi humilde y triste CSS
 const styles = StyleSheet.create({
     containernews: {
-        height: "90%"
+        height: "80%",
     },
     landcontainernews: {
-        height: "90%"
+        height: "73%",
     },
     areanotas: {
-        backgroundColor: "pink"
+        backgroundColor: "blue",
+        // height: "0%"
     },
     diario: {
         alignSelf: "center",
-        height: "89%",
+
+        backgroundColor: "lightgrey"
+    },
+    landdiario: {
+        alignSelf: "center",
+
         backgroundColor: "lightgrey"
     },
     diariotit: {
@@ -172,11 +177,11 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignContent: 'space-between',
         alignItems: 'center',
-        height: '89%'
+        height: '80%'
     },
     boton: {
         alignSelf: "center",
-        width: "75%"
+        width: "45%"
     }
 })
 
