@@ -23,6 +23,7 @@
     "expo-status-bar": "~1.11.1",
     "expo-tracking-transparency": "^3.3.0",
     "expo-web-browser": "^12.8.2",
+    "formik": "^2.4.5",
     "react": "18.2.0",
     "react-native": "0.73.2",
     "react-native-email-link": "^1.16.0",
@@ -31,7 +32,8 @@
     "react-native-rss-parser": "^1.5.1",
     "react-native-version-check-expo": "^3.4.7",
     "react-router-native": "^6.21.3",
-    "rss-to-json": "^2.1.1"
+    "rss-to-json": "^2.1.1",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

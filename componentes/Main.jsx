@@ -8,6 +8,7 @@ import Tele from "./Tele";
 import Rss from './Rss';
 import Constants from 'expo-constants'
 import TestBanner from './TestBanner';
+import Contact from './Contact';
 
 const Main = () => {
     return (
@@ -18,7 +19,7 @@ const Main = () => {
                 <Route path="/radio" element={<Radio />} />
                 <Route path="/tele" element={<Tele />} />
                 <Route path="/news" element={<Rss />} />
-                <Route path="/ads" element={<TestBanner />} />
+                <Route path="/contact" element={<Contact/>} />
                 <Route path='*' element={<Navigate to='/' />} />
             </Routes>
             <TestBanner />

@@ -112,18 +112,24 @@ const Info = () => {
         // Elijo estilo segun ancho de pantalla
         <View style={isPortrait() ? styles.container : styles.landcontainer}>
             <View style={styles.headerbox}>
-                <Text style={styles.textheader}>Nuestra transmisión las 24 hs del día</Text>
-                <Link to="/tele">
-                    <Text style={styles.titulo}>Bragado TV En Vivo</Text>
-                </Link>
+                <View>
+                    <Text style={styles.textheader}>Las 24 hs del día</Text>
+                </View>
+                <View>
+                    <Link to="/tele">
+                        <Text style={styles.titulo}>Tele En Vivo</Text>
+                    </Link>
+                </View>
             </View>
             <View style={styles.midle}>
-                <Text style={styles.textmidle}>Las últimas noticias Bragado y la zona, en la palma de tu mano</Text>
-                <Link to="/news">
-                    <Text style={styles.textbtn}>Ver Noticias</Text>
-                </Link>
+                <View>
+                    <Text style={styles.textmidle}>Las últimas noticias Bragado y la zona, en la palma de tu mano</Text></View>
+                <View>
+                    <Link to="/news">
+                        <Text style={styles.textbtn}>Ver Noticias</Text>
+                    </Link>
+                </View>
             </View>
-
             <View style={styles.contentbox}>
                 <Pressable style={styles.box} onPress={() => { handleOpenPhoneCallAsync() }}><Feather name="phone-call" size={32} color="white" /></Pressable>
                 <Pressable style={styles.box} onPress={() => { _handlePressButtonAsync("https://www.instagram.com/bragadotvok/?hl=es") }}><AntDesign name="instagram" size={32} color="white" /></Pressable>
@@ -146,7 +152,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'lightgrey',
         width: '100%',
-        height: '81%',
+        height: '80%',
     },
     landcontainer: {
         flexDirection: 'column',
@@ -161,7 +167,6 @@ const styles = StyleSheet.create({
         fontWeight: 'normal',
         fontSize: 20
     },
-
     textbtnlive: {
         fontWeight: 'normal',
         fontSize: 20,
@@ -182,10 +187,10 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
     headerbox: {
-        flex: .50,
-        flexDirection: "row",
+        flex: .75,
+        flexDirection: "column",
         flexWrap: "wrap",
-        alignContent: "center",
+        alignItems: "center",
         justifyContent: "center",
         borderRadius: 20,
         padding: 20
@@ -196,11 +201,11 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     midle: {
-        flex: 1.5,
-        width: "100%",
-        flexDirection: "row",
+        flex: 1.25,
+        // width: "100%",
+        flexDirection: "columm",
         flexWrap: "wrap",
-        alignContent: "center",
+        alignItems: "center",
         justifyContent: "center",
         backgroundColor: "lightgrey",
         borderRadius: 20,
@@ -222,8 +227,8 @@ const styles = StyleSheet.create({
     },
     box: {
         flexDirection: 'column',
-        height: 100,
-        width: 100,
+        height: 60,
+        width: 60,
         backgroundColor: 'red',
         borderRadius: 15,
         justifyContent: 'center',

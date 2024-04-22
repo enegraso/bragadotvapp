@@ -56,7 +56,7 @@ const AppBar = () => {
                     <AppBarTab active to='/'> Home </AppBarTab>
                     <AppBarTab to='/tele'> TV en VIVO </AppBarTab>
                     <AppBarTab to='/news'> Noticias </AppBarTab>
-                    {/* <AppBarTab to='/ads'> Banner </AppBarTab> */}
+                    <AppBarTab to='/contact'> Contacto </AppBarTab>
                 </ScrollView>
             </View>
         </View>
