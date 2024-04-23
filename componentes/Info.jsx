@@ -82,7 +82,7 @@ const Info = () => {
 
     //      <Button onPress={handleOpenEmailboxAsync}>Open email app</Button>
 
-    /*       VersionCheck.needUpdate()
+    VersionCheck.needUpdate()
           .then(async res => {
             if (res.isNeeded) {
               Alert.alert(
@@ -106,7 +106,7 @@ const Info = () => {
                 ]
               );
             }
-          }); */
+          });
 
     return (
         // Elijo estilo segun ancho de pantalla

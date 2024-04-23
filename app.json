@@ -2,7 +2,7 @@
   "expo": {
     "name": "Bragado TV App",
     "slug": "bragadotvapp",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "orientation": "default",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -86,6 +86,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.enegraso.bragadotvapp",
+      "versionCode": 102,
       "permissions": [
         "com.google.android.gms.permission.ca-app-pub-6541245434978705~6536028698"
       ],
