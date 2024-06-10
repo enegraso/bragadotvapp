@@ -71,12 +71,12 @@ const Info = () => {
 
     const handleOpenEmailboxAsync = () => {
         console.log("trying open mail app")
-        Linking.openURL("mailto:somethingemail@gmail.com&subject=abcdefg&body=body")
+        Linking.openURL("mailto:bragadotv@gmail.com&subject=Contacto")
     };
 
     const handleOpenPhoneCallAsync = () => {
-        const phoneNumber = "+5492342513085"
-        console.log("call:+542342513085")
+        const phoneNumber = "+5492342531692"
+        console.log("call:+542342531692")
         Linking.openURL(`tel:${phoneNumber}`)
     };
 

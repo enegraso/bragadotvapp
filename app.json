@@ -15,7 +15,6 @@
       "**/*"
     ],
     "ios": {
-      "buildNumber": "1",
       "supportsTablet": true,
       "infoPlist": {
         "NSUserTrackingUsageDescription": "Allow this app to collect app-related data that can be used for tracking you or your device and deliver personalized ads to you.",
@@ -78,19 +77,18 @@
           }
         ]
       },
-      "bundleIdentifier": "com.enegraso"
+      "bundleIdentifier": "com.enegraso.bragadotvapp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.enegraso.bragadotvapp",
-      "versionCode": 102,
       "permissions": [
         "com.google.android.gms.permission.ca-app-pub-6541245434978705~6536028698"
       ],
-      "googleServicesFile": "./google-services.json"
+      "googleServicesFile": "./google-services.json",
+      "package": "com.enegraso.bragadotvapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"

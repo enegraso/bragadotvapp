@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { Dimensions, View, StyleSheet, Button, ScrollView } from 'react-native'
+import { Dimensions, View, StyleSheet, Button, Text} from 'react-native'
 import Constants from 'expo-constants'
 import { Video, ResizeMode } from "expo-av"
 import * as ScreenOrientation from "expo-screen-orientation"
 
+
 const Tele = ({ link, tipo }) => {
+
+      useEffect(() => {
+        checkOrient();
+        const subscription = ScreenOrientation.addOrientationChangeListener(
+            handleOrientationChange
+        );
+      return () => {
+        ScreenOrientation.removeOrientationChangeListeners(subscription);
+    };
+
+    }, []);
+  
 
     // dimensiones para ventanita de video, serán var ya que cambian al girar pantalla
     var dimensions = Dimensions.get('window');
@@ -20,7 +33,7 @@ const Tele = ({ link, tipo }) => {
         return dim.height >= dim.width;
       };
 
-    useEffect(() => {
+/*     useEffect(() => {
         checkOrient();
         const subscription = ScreenOrientation.addOrientationChangeListener(
             handleOrientationChange
@@ -29,7 +42,7 @@ const Tele = ({ link, tipo }) => {
             ScreenOrientation.removeOrientationChangeListeners(subscription);
         };
     }, []);
-
+ */
     const checkOrient = async () => {
         const orient = await ScreenOrientation.getOrientationAsync();
         setOrient(orient);
@@ -68,7 +81,9 @@ const Tele = ({ link, tipo }) => {
                         status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
                     }
                 />
+                
                 }
+
             </View>
         </View>
     )
@@ -99,14 +114,14 @@ const styles = StyleSheet.create({
         margin: 2
     },
     tvview: {
-        width: 350,
+        width: 400,
         maxWidth: "max-content",
         height: 300
     },
     landtvview: {
-        width: 500,
+        width: 450,
         maxWidth: "max-content",
-        height: 250
+        height: 200
     }
 
 

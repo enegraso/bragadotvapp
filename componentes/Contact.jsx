@@ -1,7 +1,9 @@
 import * as Yup from 'yup'
 import { Formik } from 'formik'
-import { TextInput, StyleSheet, Button, View, Text, Alert, Linking } from 'react-native';
+import { TextInput, StyleSheet, Button, View, Text, Alert, Linking, Pressable } from 'react-native';
 import axios from 'axios';
+import { AntDesign, Entypo, FontAwesome6, MaterialCommunityIcons, Feather } from '@expo/vector-icons';
+import * as WebBrowser from 'expo-web-browser';
 
 const Contact = () => {
 
@@ -14,6 +16,24 @@ const Contact = () => {
         email: Yup.string().required("Tu email es requerido"), //.matches(emailRegExp, "Formato del mail incorrecto"),
         message: Yup.string().required("Por favor ingrese un mensaje"),
     })
+
+    // funcion para ver web de bragadotv
+    const _handlePressButtonAsync = async (web) => {
+        let result = await WebBrowser.openBrowserAsync(web);
+        setResult(result);
+    };
+
+    // funcion para enviar mail
+    const handleOpenEmailboxAsync = () => {
+        console.log("trying open mail app")
+        Linking.openURL("mailto:bragadotv@gmail.com&subject=Contacto")
+    };
+
+    // funcion para llamar por teléfono
+    const handleOpenPhoneCallAsync = () => {
+        const phoneNumber = "+5492342531692"
+        Linking.openURL(`tel:${phoneNumber}`)
+    };
 
     return (
         <View style={styles.loginContainer}>
@@ -97,7 +117,7 @@ const Contact = () => {
                         <Text>Mensaje / Comentario:</Text>
                         <TextInput
                             multiline={true}
-                            numberOfLines={10}
+                            numberOfLines={7}
                             name="message"
                             placeholder="Comentario"
                             style={styles.textArea}
@@ -116,6 +136,21 @@ const Contact = () => {
                     </>
                 )}
             </Formik>
+            <View style={styles.contactarea}>
+                <View>
+                    <Text style={styles.rengtit}>Contactános</Text>
+                </View>
+                <View style={styles.renglon}>
+                    <Pressable onPress={() => { _handlePressButtonAsync("https://bragadotv.com.ar") }}><MaterialCommunityIcons name="web" size={32} color="black" /></Pressable><Text style={styles.rengtext}>Web: https://bragadotv.com.ar</Text>
+                </View>
+                <View style={styles.renglon}>
+                    <Pressable onPress={() => { handleOpenEmailboxAsync() }}><AntDesign name="mail" size={32} color="black" /></Pressable><Text style={styles.rengtext}>Mail: bragadotv@gmail.com</Text>
+                </View>
+                <View style={styles.renglon}>
+                    <Text style={styles.rengtext}>Lunes a viernes: de 9 a 12 hs</Text>
+                    <Pressable onPress={() => { handleOpenPhoneCallAsync() }}><Feather name="phone-call" size={32} color="black" /></Pressable><Text style={styles.rengtext}>Tel.: 2342 531692</Text>
+                </View>
+            </View>
         </View>
     )
 }
@@ -152,6 +187,25 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         color: "red"
     },
+    contactarea: {
+        flexDirection: "column",
+        backgroundColor: "lightblue",
+        width: "100%",
+        padding: 8,
+        marginTop: 20
+    },
+    renglon: {
+        flexDirection: "row",
+         justifyContent: "space-evenly", 
+         backgroundColor: "white",
+         margin: 2
+    },
+    rengtext: {
+        fontSize: 20, 
+    },
+    rengtit: {
+        fontSize: 22, 
+    }
 })
 
 export default Contact
